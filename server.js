@@ -17,6 +17,7 @@ const indexRouter = require('./routes/index');
 
 
 
+
 var app = express();
 
 // view engine setup
@@ -50,6 +51,7 @@ app.use(function (req, res, next) {
 //ROUTES BEGIN HERE 
 
 app.use('/', indexRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
