@@ -1,0 +1,78 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar')  %>
+<div  class="vh-100 gradient-custom">
+    <div class="box-nav d-flex-justify-between"><br>
+        <div class="filter">
+        <a href="/customers" class="text-gradient"><i class="fas fa-angle-double-left"></i>All Users
+        </a>
+    </div>
+    </div>
+    <div class="form-title text-center">
+        <h2 class="text-dark">Update Customer</h2>
+        <span class="text-dark">Use the below form to update a customer</span>
+    </div>
+    <!--form handling-->
+    <form action="/customers/<%= customer._id%>?_method=PUT" method="POST">
+        <div class="new_user">
+            <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" name="name" value="<%= customer.name%>" class="form-control" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="<%= customer.email%>">
+        </div>
+        <div class="form-group">
+            <label for="name" class="form-label">Address</label>
+            <input type="street" 
+                   class="form-control" 
+                   id="autocomplete" 
+                   placeholder="Street" name="street" value="<%= customer.address.street%>">
+            
+            <input type="city" 
+                   class="form-control" 
+                   id="inputCity" 
+                   placeholder="City"
+                   name="city" value="<%= customer.address.city%>">
+            
+            <input type="state" 
+                   class="form-control" 
+                   id="inputState" 
+                   placeholder="State"
+                   name="state" value="<%= customer.address.state%>">
+            
+            <input type="zip" 
+                   class="form-control" 
+                   id="inputZip" 
+                   placeholder="Zip" 
+                   name="zip" value="<%= customer.address.zip%>">
+            
+          </div>
+
+          <div class="form-group">
+                <label for="contact" class="form-label ">Contact</label>
+                <input type="tel" name="contact" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-457-6789"  value="<%= customer.contact%>">
+               
+            </div>
+            <div class="form-group">
+                <label for="status" class="form-label">Status</label>
+                <div class="radio inline">
+                    <input type="radio" name="status" value="Active" <% if(customer.status==='Active') { %>checked<%}%>>
+                    <label for="status" class="form-label">Active</label>
+                    </div>
+                    <div class="radio inline">
+                        <input type="radio" name="status" value="Inactive"  <% if(customer.status==='Inactive') { %>checked<% } %>>
+                        <label for="status" class="form-label">Inactive</label>
+                        </div>
+               
+            </div>
+            <div class="form-group">
+                <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-primary" type="submit">SAVE</button>
+                  </div>
+            
+            </div>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

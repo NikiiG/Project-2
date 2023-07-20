@@ -7,6 +7,8 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+
+
 //google OAuth route login route
 router.get('/auth/google', passport.authenticate(
   // Which passport strategy is being used?
@@ -23,7 +25,7 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect: '/',
+    successRedirect: '/customers',
     failureRedirect: '/'
   }
 ));

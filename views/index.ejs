@@ -1,46 +1,11 @@
 <%- include('./partials/header') %>
 <%- include('./partials/navbar')  %>
-<div class ="container">
-    <div class="box-nav d-fles-justify-between"><br>
-        <a href="/add-user" class="border-shadow">
-            <span class="text-gradient">New user <i class="fas fa-user"></i></span>
-        </a>
-    </div><br>
-    <!--form handling-->
-    <form action="/" method="POST">
-        <table class="table table-hover">
-            <thead class ="thead-dark">
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">@Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">contact</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="table-active">
-                <th scope="row">1</th>
-                <td>Username</td>
-                <td>example@gmail.com</td>
-                <td>example</td>
-                <td>916</td>
-                <td>Active</td>
-                <td>
-                    <a href="#" class="btn boder-shadow update">
-                    <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
-                </a>
-                <a  class="btn boder-shadow delete">
-                    <span class="text-gradient"><i class="fas fa-times"></i></span>
-                </a>
-                </td>
-              </tr>
-            </tbody>
-        </table>
-
-    </form>
-</div>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+       
+    
+</section>
 
 <%- include('./partials/footer') %>
