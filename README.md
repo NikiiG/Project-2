@@ -21,6 +21,8 @@ Technologies Used:
 . The project is deployed on Heroku,a cloud platform for deploying and hosting web applications.
 
 Getting started:
+https://trello.com/b/ih5g4kJA/customer-management-system
+https://salty-dawn-77835-af4d16390323.herokuapp.com/
 
 Future Enhancements:
 .Add filter
