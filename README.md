@@ -22,5 +22,5 @@ Technologies Used
 Getting started
 
 Future Enhancements
-.filter
-.dashboard with bthe graphs 
+.Add filter
+.dashboard with the graphs 
