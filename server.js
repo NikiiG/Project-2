@@ -15,6 +15,7 @@ require('./config/passport');
 
 var indexRouter = require('./routes/index');
 var customerRouter = require('./routes/customers');
+var rolesRouter = require('./routes/roles');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/customers', customerRouter);
+app.use('/roles', rolesRouter);
 
 
 

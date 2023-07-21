@@ -1,5 +1,6 @@
 const Customer = require("../models/customer");
 const Address = require("../models/address");
+const Role = require("../models/role");
 
 module.exports = {
   index,
@@ -14,7 +15,7 @@ module.exports = {
 async function index(req, res) {
   console.log("index");
   try {
-    const usersData = await Customer.find({}).populate("address").sort("name");
+    const usersData = await Customer.find({}).populate("address").populate("role").sort("name");
     console.log(usersData);
     res.render("customers/index", { users: usersData });
   } catch (error) {
@@ -24,7 +25,8 @@ async function index(req, res) {
 
 async function newUser(req, res) {
   console.log("new");
-  res.render("customers/add", {});
+  const roles = await Role.find({});
+  res.render("customers/add", {roles});
 }
 
 //create a new user and save
@@ -36,6 +38,8 @@ async function create(req, res) {
       email: req.body.email,
       contact: req.body.contact,
       status: req.body.status,
+      role: req.body.role,
+      contact: req.body.contact,
     });
     const address = new Address({
       street: req.body.street,
@@ -45,8 +49,9 @@ async function create(req, res) {
     });
     addressObj = await Address.create(address);
     user.address = addressObj;
+    
     await user.save();
-    res.redirect("/customers/add");
+    res.redirect("/customers");
   } catch (error) {
     console.log(error.message);
   }
@@ -62,8 +67,9 @@ async function deleteCustomer(req, res) {
 
 async function edit(req, res) {
   console.log("edit");
-  const customer = await Customer.findOne({ _id: req.params.id }).populate("address");
-  res.render("customers/edit", { customer: customer });
+  const customer = await Customer.findOne({ _id: req.params.id }).populate("address").populate("contact").populate("role");
+  const roles = await Role.find({});
+  res.render("customers/edit", { customer: customer, roles });
 }
 
 //update a new identified user by user id
