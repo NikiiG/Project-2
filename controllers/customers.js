@@ -69,7 +69,6 @@ async function deleteCustomer(req, res) {
 async function edit(req, res) {
   const customer = await Customer.findOne({ _id: req.params.id })
     .populate("address")
-    .populate("contact")
     .populate("role");
   const roles = await Role.find({});
   res.render("customers/edit", { customer: customer, roles });
@@ -78,6 +77,7 @@ async function edit(req, res) {
 //update a new identified user by user id
 async function update(req, res) {
   try {
+    
     const updateUser = await Customer.findOneAndUpdate(
       { _id: req.params.id },
       req.body,
