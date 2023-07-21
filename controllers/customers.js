@@ -15,8 +15,10 @@ module.exports = {
 async function index(req, res) {
   console.log("index");
   try {
-    const usersData = await Customer.find({}).populate("address").populate("role").sort("name");
-    console.log(usersData);
+    const usersData = await Customer.find({})
+      .populate("address")
+      .populate("role")
+      .sort("name");
     res.render("customers/index", { users: usersData });
   } catch (error) {
     console.log(error.message || "error occured");
@@ -26,7 +28,7 @@ async function index(req, res) {
 async function newUser(req, res) {
   console.log("new");
   const roles = await Role.find({});
-  res.render("customers/add", {roles});
+  res.render("customers/add", { roles });
 }
 
 //create a new user and save
@@ -49,7 +51,7 @@ async function create(req, res) {
     });
     addressObj = await Address.create(address);
     user.address = addressObj;
-    
+
     await user.save();
     res.redirect("/customers");
   } catch (error) {
@@ -59,15 +61,16 @@ async function create(req, res) {
 
 //delete a user with specified user id in the request
 async function deleteCustomer(req, res) {
-  console.log("delete");
   const customer = await Customer.findOne({ _id: req.params.id });
   await Customer.deleteOne(customer);
   res.redirect(`/customers`);
 }
 
 async function edit(req, res) {
-  console.log("edit");
-  const customer = await Customer.findOne({ _id: req.params.id }).populate("address").populate("contact").populate("role");
+  const customer = await Customer.findOne({ _id: req.params.id })
+    .populate("address")
+    .populate("contact")
+    .populate("role");
   const roles = await Role.find({});
   res.render("customers/edit", { customer: customer, roles });
 }
@@ -75,7 +78,11 @@ async function edit(req, res) {
 //update a new identified user by user id
 async function update(req, res) {
   try {
-    const updateUser = await Customer.findOneAndUpdate({_id: req.params.id}, req.body, {new: true});
+    const updateUser = await Customer.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true }
+    );
     res.redirect(`/customers`);
   } catch (error) {
     console.log(error.message);
